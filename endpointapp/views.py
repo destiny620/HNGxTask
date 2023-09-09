@@ -15,7 +15,7 @@ import calendar
 def ApiOverview(request):
 	api_urls = {
 		'all_items': 'all',
-		'Search by Slack': '/?slack=slack_name',
+		'Search by Slack': '/?slack_name=slack_name',
 		'Search by Track': '/?track=track',
 	}
 
