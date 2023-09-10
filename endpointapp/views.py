@@ -34,8 +34,8 @@ def ApiOverview(request):
 def view_items(request):
     api_urls = {
         'all_items': '/',
-        'Search by Slack': '/?slack_name=slack_name',
-        'Search by Track': '/?track=track'
+        'Search by Slack': '?slack_name=slack_name',
+        'Search by Track': '?track=track'
     }
 
     return Response(api_urls)
