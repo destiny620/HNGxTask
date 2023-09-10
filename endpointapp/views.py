@@ -17,7 +17,7 @@ def ApiOverview(request):
         items = Endpoint.objects.filter(**request.query_params.dict())
        
     else:
-        items = Endpoint.objects.all()
+        items = Endpoint.objects.using('db.sqlite3').all()
  
     # if there is something in items else raise error
     if items:
