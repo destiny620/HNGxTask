@@ -28,10 +28,6 @@ def ApiOverview(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
     
 
-     
-
-
-
 
 
 @api_view(['GET'])
