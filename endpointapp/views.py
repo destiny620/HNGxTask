@@ -24,6 +24,7 @@ def ApiOverview(request):
         serializer = EndpointSerializer(items, many=True)
         return Response(serializer.data)
     else:
+        print("No Items Found")
         return Response(status=status.HTTP_404_NOT_FOUND)
     
 # @api_view(['GET'])
