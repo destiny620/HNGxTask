@@ -29,7 +29,7 @@ def ApiOverview(request):
 @api_view(['GET'])
 def view_items(request):
     api_urls = {
-        'all_items': 'all-urls',
+        'all_items': '/',
 		'Search by Slack': '/?slack_name=slack_name',
 		'Search by Track': '/?track=track',
 	}
