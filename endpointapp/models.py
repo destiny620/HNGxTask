@@ -4,6 +4,7 @@ import datetime
 import pytz
 from datetime import date
 import calendar
+from django.utils import timezone
 
 
 
@@ -18,12 +19,15 @@ def days():
     return calendar.day_name[d.weekday()]
 
 
+
+def default_utc_time():
+    return timezone.now()
     
  
 class Endpoint(models.Model):
     slack_name = models.CharField(max_length=50)
     current_day = models.DateField(default=days, null=True)
-    utc_time = models.DateTimeField(datetime.datetime.now(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
+    utc_time = models.DateTimeField(default=default_utc_time)
     track = models.CharField(max_length=50)
     github_file_url = models.CharField(max_length=200)
     gitup_repo_url = models.CharField(max_length=200)

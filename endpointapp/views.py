@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from .models import Endpoint
 from .serializers import EndpointSerializer
 from rest_framework import status
-from datetime import date
-import calendar
+from django.urls import reverse
+
 
 # Create your views here.
 
@@ -26,13 +26,23 @@ def ApiOverview(request):
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
+# @api_view(['GET'])
+# def view_items(request):
+#     api_urls = {
+#         'all_items': '/',
+# 		'Search by Slack': '/?slack_name=slack_name',
+# 		'Search by Track': '/?track=track',
+# 	}
+
+#     return Response(api_urls)
+
 @api_view(['GET'])
 def view_items(request):
     api_urls = {
-        'all_items': '/',
-		'Search by Slack': '/?slack_name=slack_name',
-		'Search by Track': '/?track=track',
-	}
+        'all_items': reverse('home'),
+        'Search by Slack': f"{reverse('home')}?slack_name=slack_name",
+        'Search by Track': f"{reverse('home')}?track=track",
+    }
 
     return Response(api_urls)
 
