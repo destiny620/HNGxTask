@@ -10,23 +10,9 @@ import calendar
 # Create your views here.
 
 
-
 @api_view(['GET'])
 def ApiOverview(request):
-	api_urls = {
-		'all_items': 'all',
-		'Search by Slack': '/?slack_name=slack_name',
-		'Search by Track': '/?track=track',
-	}
-
-	return Response(api_urls)
-
-    
-@api_view(['GET'])
-def view_items(request):
-     
-     
-    # checking for the parameters from the URL
+      # checking for the parameters from the URL
     if request.query_params:
         items = Endpoint.objects.filter(**request.query_params.dict())
        
@@ -39,5 +25,18 @@ def view_items(request):
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['GET'])
+def view_items(request):
+    api_urls = {
+        'all_items': 'all-urls',
+		'Search by Slack': '/?slack_name=slack_name',
+		'Search by Track': '/?track=track',
+	}
+
+    return Response(api_urls)
+
+     
+  
     
 

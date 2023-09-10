@@ -22,7 +22,7 @@ def days():
  
 class Endpoint(models.Model):
     slack_name = models.CharField(max_length=50)
-    current_day = models.DateField(default=days)
+    current_day = models.DateField(default=days, null=True)
     utc_time = models.DateTimeField(datetime.datetime.now(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
     track = models.CharField(max_length=50)
     github_file_url = models.CharField(max_length=200)
