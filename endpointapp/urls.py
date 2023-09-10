@@ -1,8 +1,6 @@
 from django.urls import path
-from . import views
-
+from .views import get_slack_details
 
 urlpatterns = [
-    path('', views.ApiOverview, name='home'),
-    path('all-urls/', views.view_items, name='view_items'),
+    path('api', get_slack_details, name="get_slack_details")
 ]
