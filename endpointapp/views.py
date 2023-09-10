@@ -20,24 +20,15 @@ def ApiOverview(request):
         items = Endpoint.objects.all()
  
     # if there is something in items else raise error
-    # if items:
+    if items:
         serializer = EndpointSerializer(items, many=True)
         return Response(serializer.data)
-    # else:
-    #     print("No Items Found")
-    #     return Response(status=status.HTTP_404_NOT_FOUND)
+    else:
+        print("No Items Found")
+        return Response(status=status.HTTP_404_NOT_FOUND)
     
      
-#  @api_view(['GET', 'POST'])
-# def track_list(request):
-#     """
-#     View and Create Post.
-#     """
-#     if request.method == 'GET':
-#         tracks = Track.objects.all()
-       
-#         serializer = TrackSerializer(tracks, many=True)
-#         return Response(serializer.data)
+
 
 
 # @api_view(['GET'])
