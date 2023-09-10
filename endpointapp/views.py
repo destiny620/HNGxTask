@@ -10,36 +10,46 @@ from django.urls import reverse
 # Create your views here.
 
 
-@api_view(['GET'])
-def ApiOverview(request):
-      # checking for the parameters from the URL
-    if request.query_params:
-        items = Endpoint.objects.filter(**request.query_params.dict())
+# @api_view(['GET'])
+# def ApiOverview(request):
+#       # checking for the parameters from the URL
+#     if request.query_params:
+#         items = Endpoint.objects.filter(**request.query_params.dict())
        
-    else:
-        items = Endpoint.objects.all()
+#     else:
+#         items = Endpoint.objects.all()
  
-    # if there is something in items else raise error
-    if items:
-        serializer = EndpointSerializer(items, many=True)
+#     # if there is something in items else raise error
+#     if items:
+#         serializer = EndpointSerializer(items, many=True)
+#         return Response(serializer.data)
+#     else:
+#         print("No Items Found")
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['GET', 'POST'])
+def ApiOverview(request):
+    """
+    View and Create Post.
+    """
+    if request.method == 'GET':
+        tracks = Endpoint.objects.all()
+       
+        serializer = EndpointSerializer(tracks, many=True)
         return Response(serializer.data)
-    else:
-        print("No Items Found")
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    elif request.method == 'POST':
+        serializer = EndpointSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
      
 
 
 
-# @api_view(['GET'])
-# def view_items(request):
-#     api_urls = {
-#         'all_items': '/',
-# 		'Search by Slack': '/?slack_name=slack_name',
-# 		'Search by Track': '/?track=track',
-# 	}
 
-#     return Response(api_urls)
 
 @api_view(['GET'])
 def view_items(request):
