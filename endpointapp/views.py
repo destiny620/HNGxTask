@@ -33,14 +33,22 @@ def ApiOverview(request):
 @api_view(['GET'])
 def view_items(request):
     api_urls = {
-        'all_items': reverse('home'),
-        'Search by Slack': f"{reverse('home')}?slack_name=slack_name",
-        'Search by Track': f"{reverse('home')}?track=track",
+        'all_items': "/",
+        'Search by Slack': "/?slack_name=slack_name",
+        'Search by Track': "/?track=track"
     }
 
     return Response(api_urls)
 
      
   
-    
+# @api_view(['GET'])
+# def view_items(request):
+#     api_urls = {
+#         'all_items': reverse('home'),
+#         'Search by Slack': f"{reverse('home')}?slack_name=slack_name",
+#         'Search by Track': f"{reverse('home')}?track=track",
+#     }
+
+#     return Response(api_urls)
 
